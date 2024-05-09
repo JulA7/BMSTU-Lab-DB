@@ -1,0 +1,66 @@
+--Заполнение справочника регионов
+INSERT INTO public.regions
+(regionname, isactive)
+VALUES 
+('Балашиха', true), 
+('Верея', true),
+('Волоколамск', true),
+('Воскресенск', true),
+('Голицыно', true),
+('Дмитров', true),
+('Дубна', true),
+('Королёв', true),
+('Москва', true),
+('Пушкино', true),
+('Ступино', true),
+('Чехов', true);
+
+--Заполнение справочника продуктов
+INSERT INTO public.products
+(productname, price, isactive)
+VALUES
+('Wi-Fi роутер TP-Link Archer', 1000, true),
+('Wi-Fi роутер Keenetic Giga', 1500, true),
+('Wi-Fi роутер Tenda', 2300, true),
+('Wi-Fi роутер Mercusys', 3200, true),
+('Роутер VDSL2/ADSL2 + Keenetic Launcher DSL', 3200, true),
+('Точка доступа D-Link', 1200, true),
+('Усилитель беспроводного сигнала Mercusys', 5000, true),
+('Wi-Fi адаптер DEXP', 550, true),
+('Усилитель интернет-сигнала РЭМО', 1000, true),
+('Точка доступа TP-Link', 2000, true),
+('Точка доступа Tenda', 4500, true);
+
+--Заполнение таблицы клиентов
+INSERT INTO public.clients
+(inn, regionid, clientname, legaltype, createdon, phone, email)
+VALUES
+( '7726404951', 1, 'ООО "ЮКИ"', 1, now(), '79187888273', 'uki@mail.ru'),
+( '7704429448', 5, 'ООО "Митпроф"', 1, now(), '79537888273', 'mit@gmail.com'),
+( '9729107527', 6, 'ООО "Интер Трейд"', 1, now(), '79830878286', 'trade@gmail.com'),
+( '7722409204', 9, 'ООО "МСК Гидравлик"', 1, now(), '79440878244', 'mskgid@mail.ru'),
+( '632207852138', 9, 'ИП Маков Алексей Анатольевич', 2, now(), '79414868043', 'makov@gmail.com'),
+( '771381948608', 9, 'ИП Муравьева Мария Вячеславовна', 2, now(), '79530668989', 'murmar@mail.ru'),
+( '770403964202', 12, 'ИП Жужгов Валерий Валентинович', 2, now(), '79401728226', 'valery96@gmail.com');
+
+--Заполнение справоника статусов
+INSERT INTO public.statuses
+(statusname, isactive)
+VALUES
+('В работе', true),
+('КП', true),
+('Оплата', true),
+('Отмена', true),
+('Успех', true);
+
+--Заполнение таблицы продаж
+INSERT INTO public.sales
+(statusid, clientid, createdon, planrevenue, factrevenue)
+VALUES
+(1, 7, now(), '1800', '1800'),
+(1, 3, now(), '2100', '1000'),
+(4, 3, now(), '5000', '5000'),
+(2, 5, now(), '1200', '500'),
+(2, 2, now(), '4300', '4300'),
+(1, 3, now(), '1240', '1240'),
+(5, 7, now(), '3210', '3000');
