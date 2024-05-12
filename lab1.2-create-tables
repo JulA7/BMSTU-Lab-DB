@@ -1,0 +1,38 @@
+-- Создание таблицы со справочникам регионов
+CREATE TABLE Regions(
+RegionId Serial,
+RegionName VARCHAR(50),
+IsActive BOOL);
+
+-- Создание таблицы со справочником продуктов
+CREATE TABLE Products(
+ProductId Serial,
+ProductName VARCHAR(50),
+Price NUMERIC,
+IsActive BOOL);
+
+-- Создание таблицы с данными клиентов
+CREATE TABLE Clients(
+ClientId Serial,
+INN VARCHAR(12),
+RegionId INT,
+ClientName VARCHAR(100),
+LegalType INT,
+CreatedOn DATE,
+Phone VARCHAR(11),
+Email VARCHAR(50));
+
+-- Создание таблицы со справочникам статусов продажи
+CREATE TABLE Statuses(
+StatusId Serial,
+StatusName VARCHAR(50),
+IsActive BOOL);
+
+-- Создание таблицы с данными по продажам
+CREATE TABLE Sales(
+SaleId Serial,
+StatusId INT,
+ClientId INT,
+CreatedOn DATE,
+PlanRevenue VARCHAR(50),
+FactRevenue VARCHAR(50));
