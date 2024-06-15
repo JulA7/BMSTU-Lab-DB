@@ -34,5 +34,5 @@ SaleId Serial,
 StatusId INT,
 ClientId INT,
 CreatedOn DATE,
-PlanRevenue VARCHAR(50),
-FactRevenue VARCHAR(50));
+PlanRevenue NUMERIC,
+FactRevenue NUMERIC);
