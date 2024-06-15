@@ -1,0 +1,34 @@
+-- Создание таблицы Менеджеров
+CREATE TABLE Managers(
+ManagerId Serial PRIMARY KEY,
+SurName VARCHAR(100) NOT NULL,
+Name VARCHAR(100) NOT NULL,
+IsActive BOOL NOT NULL DEFAULT 'true');
+
+-- Заполнение таблицы менеджеров
+INSERT INTO public.managers
+(surname, "name")
+VALUES('Иванов', 'Иван');
+
+-- Добавление Менеджера на Продажи
+ALTER TABLE Sales  
+ADD ManagerId INT;
+
+-- Заполнение Менеджера на всех текущих продажах
+UPDATE public.sales
+SET ManagerId=1;
+
+-- Изменение таблицы Продаж
+ALTER TABLE Sales
+ALTER COLUMN ManagerId SET NOT NULL,
+ADD FOREIGN KEY (ManagerId) REFERENCES Managers (ManagerId);
+
+-- Создание таблицы связи Продажи и Продуктов
+CREATE TABLE SaleProducts(
+SaleId INT REFERENCES Sales (SaleId) NOT NULL,
+ProductId INT REFERENCES Products (ProductId) NOT NULL,
+Price NUMERIC NOT NULL,
+Amount INT NOT NULL,
+CONSTRAINT positive_price CHECK (Price > 0),
+CONSTRAINT positive_amount CHECK (Amount > 0),
+PRIMARY KEY(SaleId, ProductId));
