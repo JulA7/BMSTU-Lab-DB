@@ -61,3 +61,18 @@ CREATE TABLE AnswerQuestions
 	FOREIGN KEY (AnswerId) REFERENCES Answers (AnswerId),
 	PRIMARY KEY(QuestionId, AnswerId)
 );
+
+--Создание таблицы для хранения связи вопросов к ответу
+CREATE TABLE Reviews
+(
+	ReviewsId SERIAL PRIMARY KEY,
+	ProductCode CHARACTER VARYING(50),
+	FOREIGN KEY (ProductCode) REFERENCES Products (Code)
+	Description TEXT NOT NULL,
+	Phone VARCHAR(11) NOT NULL,
+	ConfirmCode UNIQUE INT NOT NULL,
+	Estimation INT NOT NULL,
+	CHECK(Estimation > 0 AND Estimation < 6),
+	UsefulCount INTEGER DEFAULT 0,
+	UselessCount INTEGER DEFAULT 0
+);
