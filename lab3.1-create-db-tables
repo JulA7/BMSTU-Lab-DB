@@ -62,7 +62,7 @@ CREATE TABLE AnswerQuestions
 	PRIMARY KEY(QuestionId, AnswerId)
 );
 
---Создание таблицы для хранения связи вопросов к ответу
+--Создание таблицы для хранения отзывов
 CREATE TABLE Reviews
 (
 	ReviewsId SERIAL PRIMARY KEY,
