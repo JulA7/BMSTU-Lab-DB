@@ -1,0 +1,44 @@
+-- Обновить таблицу справочника Статусов
+ALTER TABLE Statuses  
+ADD PRIMARY KEY (StatusId),
+ALTER COLUMN StatusName SET NOT NULL,
+ALTER COLUMN IsActive SET NOT NULL,
+ALTER COLUMN IsActive SET DEFAULT 'true';
+
+-- Обновить таблицу справочника Продуктов
+ALTER TABLE Products  
+ADD PRIMARY KEY (ProductId),
+ALTER COLUMN ProductName SET NOT NULL,
+ALTER COLUMN Price SET NOT NULL,
+ADD CONSTRAINT positive_price CHECK (price > 0),
+ALTER COLUMN IsActive SET NOT NULL,
+ALTER COLUMN IsActive SET DEFAULT 'true';
+
+-- Обновить таблицу справочника Регионов
+ALTER TABLE Regions  
+ADD PRIMARY KEY (RegionId),
+ALTER COLUMN RegionName SET NOT NULL,
+ALTER COLUMN IsActive SET NOT NULL,
+ALTER COLUMN IsActive SET DEFAULT 'true';
+
+-- Обновить таблицу Клиентов
+ALTER TABLE Clients  
+ADD PRIMARY KEY (ClientId),
+ALTER COLUMN RegionId SET NOT NULL,
+ALTER COLUMN ClientName SET NOT NULL,
+ALTER COLUMN CreatedOn SET NOT NULL,
+ALTER COLUMN CreatedOn SET DEFAULT CURRENT_DATE,
+ADD FOREIGN KEY (RegionId) REFERENCES Regions (RegionId);
+
+-- Обновить таблицу Продаж
+ALTER TABLE Sales  
+ADD PRIMARY KEY (SaleId),
+ALTER COLUMN StatusId SET NOT NULL,
+ADD FOREIGN KEY (StatusId) REFERENCES Statuses (StatusId),
+ALTER COLUMN StatusId SET DEFAULT '1',
+ALTER COLUMN ClientId SET NOT NULL,
+ADD FOREIGN KEY (ClientId) REFERENCES Clients (ClientId),
+ALTER COLUMN CreatedOn SET NOT NULL,
+ALTER COLUMN CreatedOn SET DEFAULT CURRENT_DATE,
+ADD CONSTRAINT positive_planrevenue CHECK (PlanRevenue > 0),
+ADD CONSTRAINT positive_factrevenue CHECK (FactRevenue > 0);
