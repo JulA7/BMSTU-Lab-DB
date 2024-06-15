@@ -73,6 +73,6 @@ CREATE TABLE Reviews
 	ConfirmCode UNIQUE INT NOT NULL,
 	Estimation INT NOT NULL,
 	CHECK(Estimation > 0 AND Estimation < 6),
-	UsefulCount INTEGER DEFAULT 0,
-	UselessCount INTEGER DEFAULT 0
+	UsefulCount INT DEFAULT 0,
+	UselessCount INT DEFAULT 0
 );
