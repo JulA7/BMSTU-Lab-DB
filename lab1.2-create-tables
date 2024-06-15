@@ -1,4 +1,4 @@
--- Создание таблицы со справочникам регионов
+-- Создание таблицы со справочником регионов
 CREATE TABLE Regions(
 RegionId Serial,
 RegionName VARCHAR(50),
@@ -22,7 +22,7 @@ CreatedOn DATE,
 Phone VARCHAR(11),
 Email VARCHAR(50));
 
--- Создание таблицы со справочникам статусов продажи
+-- Создание таблицы со справочником статусов продажи
 CREATE TABLE Statuses(
 StatusId Serial,
 StatusName VARCHAR(50),
