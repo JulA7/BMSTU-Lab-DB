@@ -1,0 +1,63 @@
+--Создание базы данных для Интернет-магазина
+CREATE DATABASE OnlineStoreDB;
+
+--Создание таблицы Товаров
+CREATE TABLE Products
+(
+    Code VARCHAR(25) PRIMARY KEY,
+    Name VARCHAR(100) NOT NULL,
+    Description TEXT,
+    Size INTEGER CHECK (size > 10) NOT NULL,
+    Color VARCHAR(50) NOT NULL,
+    Weight NUMERIC NOT NULL
+);
+
+--Создание таблицы для хранения информации о фото
+CREATE TABLE Photo
+(
+	PhotoId SERIAL PRIMARY key,
+  Internal BOOL NOT NULL,
+	Link VARCHAR(500),
+	ProductCode VARCHAR(25) NOT NULL,
+	FOREIGN KEY (ProductCode) REFERENCES Products (Code)
+);
+
+--Создание таблицы для хранения информации о видеообзорах
+CREATE TABLE Video
+(
+	VideoId SERIAL PRIMARY key,
+  Internal BOOL NOT NULL,
+	Link VARCHAR(500),
+	ProductCode VARCHAR(25) NOT NULL,
+	FOREIGN KEY (ProductCode) REFERENCES Products (Code)
+);
+
+--Создание таблицы для хранения ответов
+CREATE TABLE Answers
+(
+	AnswerId SERIAL PRIMARY KEY,
+	Description TEXT NOT NULL,
+  QuestionId INT UNIQUE NOT NULL,
+	FOREIGN KEY (QuestionId) REFERENCES Questions (QuestionId),
+);
+
+--Создание таблицы для хранения вопросов
+CREATE TABLE Questions
+(
+	QuestionId SERIAL PRIMARY KEY,
+	Description TEXT NOT NULL,
+	Name VARCHAR(50),
+	Email VARCHAR(50),
+	ProductCode CHARACTER VARYING(50),
+	FOREIGN KEY (ProductCode) REFERENCES Products (Code)
+);
+
+--Создание таблицы для хранения связи вопросов к ответу
+CREATE TABLE AnswerQuestions
+(
+	QuestionId INT NOT NULL,
+  AnswerId INT NOT NULL,
+	FOREIGN KEY (QuestionId) REFERENCES Questions (QuestionId),
+  FOREIGN KEY (AnswerId) REFERENCES Answers (AnswerId),
+  PRIMARY KEY(QuestionId, AnswerId)
+);
