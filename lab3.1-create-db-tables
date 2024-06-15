@@ -4,19 +4,19 @@ CREATE DATABASE OnlineStoreDB;
 --Создание таблицы Товаров
 CREATE TABLE Products
 (
-    Code VARCHAR(25) PRIMARY KEY,
-    Name VARCHAR(100) NOT NULL,
-    Description TEXT,
-    Size INTEGER CHECK (size > 10) NOT NULL,
-    Color VARCHAR(50) NOT NULL,
-    Weight NUMERIC NOT NULL
+    	Code VARCHAR(25) PRIMARY KEY,
+    	Name VARCHAR(100) NOT NULL,
+    	Description TEXT,
+    	Size INTEGER CHECK (size > 10) NOT NULL,
+    	Color VARCHAR(50) NOT NULL,
+    	Weight NUMERIC NOT NULL
 );
 
 --Создание таблицы для хранения информации о фото
 CREATE TABLE Photo
 (
 	PhotoId SERIAL PRIMARY key,
-  Internal BOOL NOT NULL,
+  	Internal BOOL NOT NULL,
 	Link VARCHAR(500),
 	ProductCode VARCHAR(25) NOT NULL,
 	FOREIGN KEY (ProductCode) REFERENCES Products (Code)
@@ -26,7 +26,7 @@ CREATE TABLE Photo
 CREATE TABLE Video
 (
 	VideoId SERIAL PRIMARY key,
-  Internal BOOL NOT NULL,
+  	Internal BOOL NOT NULL,
 	Link VARCHAR(500),
 	ProductCode VARCHAR(25) NOT NULL,
 	FOREIGN KEY (ProductCode) REFERENCES Products (Code)
@@ -37,7 +37,7 @@ CREATE TABLE Answers
 (
 	AnswerId SERIAL PRIMARY KEY,
 	Description TEXT NOT NULL,
-  QuestionId INT UNIQUE NOT NULL,
+ 	QuestionId INT UNIQUE NOT NULL,
 	FOREIGN KEY (QuestionId) REFERENCES Questions (QuestionId),
 );
 
@@ -56,8 +56,8 @@ CREATE TABLE Questions
 CREATE TABLE AnswerQuestions
 (
 	QuestionId INT NOT NULL,
-  AnswerId INT NOT NULL,
+ 	AnswerId INT NOT NULL,
 	FOREIGN KEY (QuestionId) REFERENCES Questions (QuestionId),
-  FOREIGN KEY (AnswerId) REFERENCES Answers (AnswerId),
-  PRIMARY KEY(QuestionId, AnswerId)
+	FOREIGN KEY (AnswerId) REFERENCES Answers (AnswerId),
+	PRIMARY KEY(QuestionId, AnswerId)
 );
