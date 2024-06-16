@@ -32,15 +32,6 @@ CREATE TABLE Video
 	FOREIGN KEY (ProductCode) REFERENCES Products (Code)
 );
 
---Создание таблицы для хранения ответов
-CREATE TABLE Answers
-(
-	AnswerId SERIAL PRIMARY KEY,
-	Description TEXT NOT NULL,
- 	QuestionId INT UNIQUE NOT NULL,
-	FOREIGN KEY (QuestionId) REFERENCES Questions (QuestionId),
-);
-
 --Создание таблицы для хранения вопросов
 CREATE TABLE Questions
 (
@@ -50,6 +41,15 @@ CREATE TABLE Questions
 	Email VARCHAR(50),
 	ProductCode CHARACTER VARYING(50),
 	FOREIGN KEY (ProductCode) REFERENCES Products (Code)
+);
+
+--Создание таблицы для хранения ответов
+CREATE TABLE Answers
+(
+	AnswerId SERIAL PRIMARY KEY,
+	Description TEXT NOT NULL,
+ 	QuestionId INT UNIQUE NOT NULL,
+	FOREIGN KEY (QuestionId) REFERENCES Questions (QuestionId)
 );
 
 --Создание таблицы для хранения связи вопросов к ответу
@@ -75,4 +75,17 @@ CREATE TABLE Reviews
 	CHECK(Estimation > 0 AND Estimation < 6),
 	UsefulCount INT DEFAULT 0,
 	UselessCount INT DEFAULT 0
+);
+
+--Создание таблицы для хранения каталога
+CREATE TABLE ProductCatalog
+(
+	ProductCode CHARACTER VARYING(50) PRIMARY KEY,
+	FOREIGN KEY (ProductCode) REFERENCES Products (Code),
+	GendersCategory TEXT NOT NULL,
+	CHECK(GendersCategory in('М','М'))
+	AgesCategory TEXT NOT NULL,
+	typethree_group filter_typethree_group NOT NULL,
+	typefour_season filter_typefour_season NOT NULL,
+	typefive_cloth text NOT NULL
 );
