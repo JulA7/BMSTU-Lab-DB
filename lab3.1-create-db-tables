@@ -66,11 +66,11 @@ CREATE TABLE AnswerQuestions
 CREATE TABLE Reviews
 (
 	ReviewsId SERIAL PRIMARY KEY,
-	ProductCode CHARACTER VARYING(50),
-	FOREIGN KEY (ProductCode) REFERENCES Products (Code)
+	ProductCode VARCHAR(50),
+	FOREIGN KEY (ProductCode) REFERENCES Products (Code),
 	Description TEXT NOT NULL,
 	Phone VARCHAR(11) NOT NULL,
-	ConfirmCode UNIQUE INT NOT NULL,
+	ConfirmCode INT UNIQUE NOT NULL,
 	Estimation INT NOT NULL,
 	CHECK(Estimation > 0 AND Estimation < 6),
 	UsefulCount INT DEFAULT 0,
@@ -82,10 +82,15 @@ CREATE TABLE ProductCatalog
 (
 	ProductCode CHARACTER VARYING(50) PRIMARY KEY,
 	FOREIGN KEY (ProductCode) REFERENCES Products (Code),
-	GendersCategory TEXT NOT NULL,
-	CHECK(GendersCategory in('М','М'))
-	AgesCategory TEXT NOT NULL,
-	typethree_group filter_typethree_group NOT NULL,
-	typefour_season filter_typefour_season NOT NULL,
-	typefive_cloth text NOT NULL
+	ProductsCategory VARCHAR(11) NOT NULL,
+	CHECK(ProductsCategory in('Одежда','Аксессуары','Обувь')),
+	GendersCategory VARCHAR(2) NOT NULL,
+	CHECK(GendersCategory in('М','Ж')),
+	AgesCategory VARCHAR(9) NOT NULL,
+	CHECK(AgesCategory in('Взрослая','Детская')),
+	TypesCategory VARCHAR(9) NOT NULL,
+	CHECK(AgesCategory in('Верхняя','Низ','Домашняя')),
+	SeasonsCategory VARCHAR(6) NOT NULL,
+	CHECK(SeasonsCategory in('Зима','Весна','Лето','Осень')),
+	Kind TEXT NOT NULL
 );
