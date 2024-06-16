@@ -7,7 +7,7 @@ CREATE TABLE Products
     	Code VARCHAR(25) PRIMARY KEY,
     	Name VARCHAR(100) NOT NULL,
     	Description TEXT,
-    	Size INTEGER CHECK (size > 10) NOT NULL,
+    	Size INT CHECK (size > 10) NOT NULL,
     	Color VARCHAR(50) NOT NULL,
     	Weight NUMERIC NOT NULL
 );
@@ -39,7 +39,7 @@ CREATE TABLE Questions
 	Description TEXT NOT NULL,
 	Name VARCHAR(50),
 	Email VARCHAR(50),
-	ProductCode CHARACTER VARYING(50),
+	ProductCode VARCHAR(50),
 	FOREIGN KEY (ProductCode) REFERENCES Products (Code)
 );
 
@@ -80,7 +80,7 @@ CREATE TABLE Reviews
 --Создание таблицы для хранения каталога
 CREATE TABLE ProductCatalog
 (
-	ProductCode CHARACTER VARYING(50) PRIMARY KEY,
+	ProductCode VARCHAR(50) PRIMARY KEY,
 	FOREIGN KEY (ProductCode) REFERENCES Products (Code),
 	ProductsCategory VARCHAR(11) NOT NULL,
 	CHECK(ProductsCategory in('Одежда','Аксессуары','Обувь')),
